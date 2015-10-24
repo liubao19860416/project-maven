@@ -1,0 +1,844 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.saic.framework</groupId>
+		<artifactId>saic-parent</artifactId>
+		<version>1.1.2</version>
+	</parent>
+	
+	<groupId>com.saick.project</groupId>
+	<artifactId>project-maven</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>project-struts2-01</name>
+	<description>测试公共jar包工程</description>
+
+
+	<!-- 当前项目有效的中央仓库配置 -->
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+			<name>central</name>
+		</repository>
+		<repository>
+			<id>maven-restlet</id>
+			<name>Public online Restlet repository</name>
+			<url>http://maven.restlet.org</url>
+		</repository>
+	</repositories>
+
+	<!-- 统一维护版本 -->
+	<properties>
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>3.2.3.RELEASE</spring.version>
+		<struts2.version>2.3.15.2</struts2.version>
+		<hibernate.version>3.6.10.Final</hibernate.version>
+		<mysql.version>5.1.29</mysql.version>
+		<ehcache.version>2.6.6</ehcache.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
+		<lucene.version>4.4.0</lucene.version>
+	</properties>
+	
+	
+	<dependencies>
+
+		<dependency>
+			<artifactId>filestorage-client</artifactId>
+			<groupId>com.saike.filestorage</groupId>
+			<version>1.0.2</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus.commons</groupId>
+			<artifactId>venus-common-exception</artifactId>
+		</dependency>
+		<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+		</dependency>
+		<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+		</dependency>
+	    <dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.gagu</groupId>
+			<artifactId>gagu-ucm-agent</artifactId>
+		</dependency>
+		<!-- framework -->
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-common-dal</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-common-rws</artifactId>
+		</dependency>
+
+		<!-- upload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-backend</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-cms-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-csc-api</artifactId>
+			<version>1.0.5</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>ebiz-cms-api</artifactId>
+					<groupId>com.saic.ebiz</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-classworlds</artifactId>
+		</dependency>
+		<!-- gagu monitor -->
+		<dependency>
+			<groupId>com.gagu.monitor.module</groupId>
+			<artifactId>gagu-monitor-module-venus</artifactId>
+		</dependency>
+		
+		<!-- MQ Start -->
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-common-mqclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>mq</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>jmqi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>headers</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>commonservices</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>pcf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>connector</artifactId>
+		</dependency>
+		<!-- MQ End -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+	
+	
+	<dependency>
+			<groupId>com.saic.healthcheck</groupId>
+			<artifactId>saic-healthcheck-web</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-framework-session</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.sso</groupId>
+			<artifactId>saic-sso-jar</artifactId>
+			<version>1.0.7</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>ebiz-csc-api</artifactId>
+					<groupId>com.saic.ebiz</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.gagu</groupId>
+			<artifactId>gagu-ucm-agent</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<optional>false</optional>
+		</dependency>
+		<!-- framework -->
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-common-dal</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-common-rws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-common-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+		<!-- cms -->
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-cms-service</artifactId>
+			<version>1.0.1-Release</version>
+		</dependency>
+		<!-- web -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>commons-httpclient</groupId> <artifactId>commons-httpclient</artifactId> 
+			<version>3.1</version> </dependency> -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+		</dependency>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<!--gagu monitor -->
+		<dependency>
+			<groupId>com.gagu.monitor.module</groupId>
+			<artifactId>gagu-monitor-module-spring</artifactId>
+		</dependency>
+		<!-- venus tracerid interceptor -->
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-http-filter</artifactId>
+		</dependency>
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<!-- validator -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<!-- commons -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>commonservices</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>headers</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>jmqi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>pcf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	<!-- 持久层dal封装的组件 -->
+	<dependency>
+		<groupId>com.saic.framework</groupId>
+		<artifactId>saic-common-dal</artifactId>
+		<version>1.0.2</version>
+	</dependency>
+	
+	<!-- 城市id信息静态类(xml文件配置) -->
+	<dependency>
+		<groupId>com.saic.ebiz</groupId>
+		<artifactId>saic-constant-code</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+	
+	<!-- nutch相关jar包 -->
+	<dependency>
+	    <groupId>org.apache.nutch</groupId>
+	    <artifactId>nutch</artifactId>
+	    <version>2.3</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.gora</groupId>
+		<artifactId>gora-core</artifactId>
+		<version>0.2.1</version>
+		<optional>true</optional>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.gora</groupId>
+		<artifactId>gora-sql</artifactId>
+		<version>0.1.1-incubating</version>
+		<exclusions>
+			<exclusion>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+		<groupId>net.sourceforge.nekohtml</groupId>
+		<artifactId>nekohtml</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	<dependency>
+		<groupId>org.ccil.cowan.tagsoup</groupId>
+		<artifactId>tagsoup</artifactId>
+		<version>1.2.1</version>
+	</dependency>
+	<dependency>
+		<groupId>dk.brics.automaton</groupId>
+		<artifactId>automaton</artifactId>
+		<version>1.11-8</version>
+	</dependency>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.26</version>
+	</dependency>
+	<!-- <dependency>
+		<groupId>org.restlet.jse</groupId>
+		<artifactId>org.restlet</artifactId>
+		<version>2.0.5</version>
+		<optional>true</optional>
+	</dependency> -->
+	<!-- <dependency>
+		<groupId>org.restlet.jse</groupId>
+		<artifactId>org.restlet.ext.jackson</artifactId>
+		<version>2.0.5</version>
+		<optional>true</optional>
+	</dependency> -->
+
+	<!-- lucene依赖 -->
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-highlighter</artifactId>
+		<version>${lucene.version}</version>
+	</dependency>
+	
+	<!--  -->
+	<!-- <dependency>
+	    <groupId>org.apache.lucene</groupId>
+	    <artifactId>lucene-spellchecker</artifactId>
+	    <version>3.6.2</version>
+	</dependency> -->
+	
+	<!--  -->
+	<dependency>
+	    <groupId>org.apache.lucene</groupId>
+	    <artifactId>lucene-snowball</artifactId>
+	    <version>3.0.3</version>
+	</dependency>
+	
+	<!--  -->
+	<!-- <dependency>
+		<groupId>org.compass-project</groupId>
+		<artifactId>compass</artifactId>
+		<version>2.2.0</version>
+	</dependency> -->
+	
+	<!--  -->
+	<!-- <dependency>
+		<groupId>lucene</groupId>
+		<artifactId>lucene</artifactId>
+		<version>1.3</version>
+	</dependency> -->
+	<!-- <dependency>
+		<groupId>lucene</groupId>
+		<artifactId>lucene</artifactId>
+		<version>1.4.3</version>
+	</dependency> -->
+	<!-- <dependency>
+		<groupId>org.apache.nutch</groupId>
+		<artifactId>nutch</artifactId>
+		<version>1.10</version>
+	</dependency> -->
+
+		
+	<!-- 用户权限验证 -->
+	<dependency>
+		<groupId>com.saic.am</groupId>
+		<artifactId>ebiz-am-api</artifactId>
+		<version>2.1.0</version>
+	</dependency>
+
+	<!-- 车享宝服务api -->
+	<dependency>
+		<groupId>com.saike.cxb</groupId>
+		<artifactId>cxb-service-api</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</dependency>
+	<!-- 测试公司jar包 -->
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-pop-web-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-dop-web</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-dop-api</artifactId>
+			<version>2.4.5-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-dop-service</artifactId>
+			<version>2.0.0-Release</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-dop-venus-service</artifactId>
+			<version>2.1.0-Release</version>
+		</dependency>
+			
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-promotion-api</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-promotion-service</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-promotion-client</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-promotion-mms-web-front</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.saic.ebiz.mediastorage</groupId>
+			<artifactId>mediastorage-http-adaptor</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz.mediastorage</groupId>
+			<artifactId>mediastorage-cms-adaptor</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.gagu</groupId>
+			<artifactId>gagu-ucm-agent</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gagu</groupId>
+			<artifactId>gagu-ucm-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.saic.healthcheck</groupId>
+			<artifactId>saic-healthcheck-web</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>saic-constant-code</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-carlib-api</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-carlib-client</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-crm3rd-service</artifactId>
+			<version>1.0.0-Release</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.ebiz</groupId>
+			<artifactId>ebiz-crm3rd-api</artifactId>
+			<version>1.0.5-Release</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.saic.framework</groupId>
+			<artifactId>saic-common-redis-client</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chiradip.rediscl</groupId>
+			<artifactId>redisclient_2.10</artifactId>
+			<version>0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.orange.redis-embedded</groupId>
+			<artifactId>embedded-redis</artifactId>
+			<version>0.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.saic.sso</groupId>
+			<artifactId>saic-sso-client</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.sso</groupId>
+			<artifactId>saic-ssoccx-client</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.saic.sso</groupId>
+			<artifactId>saic-cas-client</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.meidusa.venus.registry</groupId>
+			<artifactId>venus-registry</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus.commons</groupId>
+			<artifactId>venus-common-base</artifactId>
+			<version>3.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus.commons</groupId>
+			<artifactId>venus-common-exception</artifactId>
+			<version>3.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus.commons</groupId>
+			<artifactId>venus-common-monitor</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus.commons</groupId>
+			<artifactId>venus-common-service</artifactId>
+			<version>3.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus.commons</groupId>
+			<artifactId>venus-common-validator</artifactId>
+			<version>3.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus.extension</groupId>
+			<artifactId>venus-extension-cache</artifactId>
+			<version>3.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-bus</artifactId>
+			<version>3.2.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-client</artifactId>
+			<version>3.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-http-adaptor</artifactId>
+			<version>3.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-http-filter</artifactId>
+			<version>3.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-http-frontend</artifactId>
+			<version>3.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.meidusa.venus</groupId>
+			<artifactId>venus-http-backend</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+	</dependencies>
+	
+	<!-- 锁定版本的另一种方式 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<!-- 编译打包设置 -->
+	<build>
+		<finalName>project-struts2-01</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+					<encoding>UTF-8</encoding>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+					<warName>${project.artifactId}-${project.version}-release-${timestamp}</warName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	
+	
+</project>
