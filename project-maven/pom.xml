@@ -46,6 +46,13 @@
 	
 	
 	<dependencies>
+		
+		<!-- 工具类JsonUtils -->
+		<dependency>
+			<groupId>com.saic.carservice</groupId>
+			<artifactId>saic-carservice-common</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<artifactId>filestorage-client</artifactId>
